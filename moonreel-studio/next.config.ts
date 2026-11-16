@@ -5,11 +5,12 @@ const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
       bodySizeLimit: "10mb",
-      // Codespaces forwarded URL: the browser's Origin differs from the
-      // dev server's localhost host, so Server Actions need this allowlist.
+      // Codespaces: the tunnel forwards the public host in
+      // x-forwarded-host but rewrites Origin to localhost:3000, so the
+      // allowlist must match the ORIGIN (localhost:3000), not the tunnel.
       allowedOrigins: [
         "moonreel-g47jvq9jvwqqhpwx7-3000.app.github.dev",
-        "*.app.github.dev",
+        "localhost:3000",
       ],
     },
   },
